@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOY Project Status Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f5f0eb;
+      color: #2c2419;
+      padding: 32px 20px 60px;
+      line-height: 1.45;
+    }
+    .page { max-width: 1100px; margin: 0 auto; }
+    .hero {
+      background: #3d2f24;
+      color: #faf6f1;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+    .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+    .hero p { margin-top: 8px; opacity: 0.85; font-size: 14px; }
+    .section {
+      background: #fff;
+      border: 1px solid #e8dfd4;
+      border-radius: 14px;
+      padding: 22px 24px 26px;
+      margin-bottom: 24px;
+      page-break-inside: avoid;
+    }
+    .section h2 {
+      font-size: 18px;
+      color: #3d2f24;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #c4a882;
+    }
+    .hint {
+      font-size: 12px;
+      color: #6b5d4f;
+      margin-bottom: 20px;
+      background: #faf6f1;
+      border: 1px dashed #d4c4ad;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      background: #3d2f24;
+      color: #faf6f1;
+      text-align: left;
+      padding: 10px 8px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    td {
+      padding: 9px 8px;
+      border-bottom: 1px solid #eee5da;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #faf8f5; }
+    .pending { color: #b45309; font-weight: 700; }
+    .low { color: #6b5d4f; font-weight: 700; }
+    .high { color: #b45309; font-weight: 700; }
+    .medium { color: #2563eb; font-weight: 700; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-done { background: #dcfce7; color: #166534; }
+    .badge-pending { background: #ffedd5; color: #9a3412; }
+    .badge-info { background: #dbeafe; color: #1e40af; }
+    .badge-fix { background: #f3e8ff; color: #7e22ce; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat {
+      background: #fff;
+      border: 1px solid #e8dfd4;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat .num { font-size: 28px; font-weight: 800; color: #3d2f24; }
+    .stat .lbl { font-size: 11px; color: #6b5d4f; margin-top: 4px; }
+    code {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 11px;
+      background: #faf6f1;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    @media (max-width: 800px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 22px; }
+      table { display: block; overflow-x: auto; }
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .hint { display: none; }
+      .section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <h1>SOY — Story of You · Project Status Report</h1>
+      <p>Production pass + follow-up UI · 30 Sep 2026 · app.soythe.one · Stripe test mode verified — only live keys still needed</p>
+    </div>
+
+    <p class="hint">Tip: Screenshot each white section below for WhatsApp, or press Ctrl+P → Save as PDF. Layout matches the earlier SOY status report.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="num">36</div><div class="lbl">Items completed in code</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl">Must check on real devices</div></div>
+      <div class="stat"><div class="num">6</div><div class="lbl">Security fixes this pass</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">Owner task later (swap Stripe keys)</div></div>
+    </div>
+
+    <div class="section">
+      <h2>Table 1 — All Fixes, Features &amp; Changes</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Category</th><th>Item</th><th>Status</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>PWA</td><td>Android install banner</td><td><span class="badge badge-done">Done</span></td><td>Native prompt on Welcome <code>/</code> (new users) and Home <code>/home</code> (signed-in)</td></tr>
+          <tr><td>2</td><td>PWA</td><td>iOS Add to Home Screen</td><td><span class="badge badge-done">Done</span></td><td>~1 min after onboarding + Profile walkthrough; skips busy routes</td></tr>
+          <tr><td>3</td><td>PWA</td><td>Icons + service worker</td><td><span class="badge badge-done">Done</span></td><td>192/512 PNG, apple-touch, favicon.ico, <code>/sw.js</code> registered</td></tr>
+          <tr><td>4</td><td>Payments</td><td>Sandbox Stripe checkout</td><td><span class="badge badge-done">Verified</span></td><td>Test mode works end-to-end (checkout, portal, premium). No code change needed — only swap keys for live</td></tr>
+          <tr><td>5</td><td>Payments</td><td>Live Stripe keys</td><td><span class="badge badge-pending">Keys only</span></td><td>Replace test publishable + secret + webhook secret in host env. Same Prices lookup keys. Never commit keys</td></tr>
+          <tr><td>6</td><td>Payments</td><td>Client cannot pick live/sandbox</td><td><span class="badge badge-fix">Fixed</span></td><td>Server uses publishable key; stays sandbox until live secret exists</td></tr>
+          <tr><td>7</td><td>Payments</td><td>Webhook missing ?env=</td><td><span class="badge badge-fix">Fixed</span></td><td>Returns 400 instead of 200 ignore (so Stripe retries)</td></tr>
+          <tr><td>8</td><td>Email</td><td>Transactional templates</td><td><span class="badge badge-done">Done</span></td><td>Signup, reset, welcome, readings-ready, premium, account-deleted</td></tr>
+          <tr><td>9</td><td>Email</td><td>Open sendTestEmails</td><td><span class="badge badge-fix">Fixed</span></td><td>Requires READINGS_CRON_SECRET</td></tr>
+          <tr><td>10</td><td>Email</td><td>Verify poll listed all users</td><td><span class="badge badge-fix">Fixed</span></td><td>No admin directory scan; /verify watches local session</td></tr>
+          <tr><td>11</td><td>UI</td><td>Language dropdown</td><td><span class="badge badge-fix">Fixed</span></td><td>App rounded menu (not OS native). Static option list matches the in-app UI</td></tr>
+          <tr><td>12</td><td>UI</td><td>Profile currency + upgrade + home</td><td><span class="badge badge-done">Done</span></td><td>Currency picker, Upgrade, Home shortcut from plans/checkout</td></tr>
+          <tr><td>13</td><td>Bug</td><td>Auth flash logged-out</td><td><span class="badge badge-fix">Fixed</span></td><td>Loading stays true until getSession finishes</td></tr>
+          <tr><td>14</td><td>Bug</td><td>Story/Learn/Dashboard race</td><td><span class="badge badge-fix">Fixed</span></td><td>Show loading instead of “chart unavailable”</td></tr>
+          <tr><td>15</td><td>Bug</td><td>Place search spinner stuck</td><td><span class="badge badge-fix">Fixed</span></td><td>Catch network errors in onboarding + profile</td></tr>
+          <tr><td>16</td><td>Bug</td><td>Reset form without session</td><td><span class="badge badge-fix">Fixed</span></td><td>Inputs + submit disabled if link expired</td></tr>
+          <tr><td>17</td><td>Bug</td><td>Italian language detect</td><td><span class="badge badge-fix">Fixed</span></td><td>Browser <code>it</code> maps to Italian, not only Spanish</td></tr>
+          <tr><td>18</td><td>Bug</td><td>Windows production build</td><td><span class="badge badge-fix">Fixed</span></td><td><code>fileURLToPath</code> for Vite/Nitro path</td></tr>
+          <tr><td>19</td><td>i18n</td><td>Plans planet names</td><td><span class="badge badge-fix">Fixed</span></td><td>Sun / Moon / Ascendant use translation keys</td></tr>
+          <tr><td>20</td><td>UI</td><td>Test-mode banner on checkout</td><td><span class="badge badge-done">Done</span></td><td>Same banner as Plans on return page</td></tr>
+          <tr><td>21</td><td>SEO</td><td>Canonical + OG + Twitter</td><td><span class="badge badge-done">Done</span></td><td>Every public/private page via pageHead helper</td></tr>
+          <tr><td>22</td><td>SEO</td><td>sitemap.xml + robots.txt</td><td><span class="badge badge-done">Done</span></td><td>Public pages indexed; app/API paths blocked</td></tr>
+          <tr><td>23</td><td>SEO</td><td>JSON-LD schema</td><td><span class="badge badge-done">Done</span></td><td>Organization, WebSite, WebApplication</td></tr>
+          <tr><td>24</td><td>SEO</td><td>Private pages noindex</td><td><span class="badge badge-done">Done</span></td><td>/home, /story, /learn, /profile, /auth, checkout, verify, reset</td></tr>
+          <tr><td>25</td><td>SEO</td><td>og-image.svg</td><td><span class="badge badge-done">Done</span></td><td>Share image at /og-image.svg</td></tr>
+          <tr><td>26</td><td>SEO</td><td>llms.txt + security.txt</td><td><span class="badge badge-done">Done</span></td><td>AI crawlers + security contact admin@soythe.one</td></tr>
+          <tr><td>27</td><td>Security</td><td>HTTP security headers</td><td><span class="badge badge-done">Done</span></td><td>nosniff, referrer, permissions, COOP (OAuth popups still work)</td></tr>
+          <tr><td>28</td><td>Check</td><td>Android PWA on a real phone</td><td><span class="badge badge-pending">You</span></td><td>Must use https://app.soythe.one in Chrome</td></tr>
+          <tr><td>29</td><td>Check</td><td>iOS PWA in Safari</td><td><span class="badge badge-pending">You</span></td><td>Not Chrome-on-iOS; ~1 minute after onboarding</td></tr>
+          <tr><td>30</td><td>Check</td><td>Real inbox emails</td><td><span class="badge badge-pending">You</span></td><td>Gmail/Outlook; Inbox + Spam; see Table 5</td></tr>
+          <tr><td>31</td><td>Known</td><td>Service worker is install-only</td><td><span class="badge badge-info">Known</span></td><td>No offline cache (avoids stale HTML after deploy)</td></tr>
+          <tr><td>32</td><td>Known</td><td>/dashboard unused</td><td><span class="badge badge-info">Known</span></td><td>Legacy URL, noindex; can redirect later</td></tr>
+          <tr><td>33</td><td>UI</td><td>Language menu header jump</td><td><span class="badge badge-fix">Fixed</span></td><td>Opening language no longer scrolls/locks the header (<code>modal={false}</code>)</td></tr>
+          <tr><td>34</td><td>UI</td><td>Home audio orb play/pause</td><td><span class="badge badge-fix">Fixed</span></td><td>Play/pause control sits correctly on the orb</td></tr>
+          <tr><td>35</td><td>UI</td><td>Profile icon initials</td><td><span class="badge badge-done">Done</span></td><td>No name → user icon. “Mohit Hundlani” → <strong>MH</strong>. Saves from Profile update immediately</td></tr>
+          <tr><td>36</td><td>Payments</td><td>Stripe test mode</td><td><span class="badge badge-done">Working</span></td><td>Confirmed working. Go-live is env keys only (see Table 9)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 2 — Pending Items (Action Required)</h2>
+      <table>
+        <thead>
+          <tr><th>Priority</th><th>Task</th><th>Who</th><th>How To Do It</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="high">HIGH</td><td>Android install on a real phone</td><td>You</td><td>Chrome → https://app.soythe.one → Welcome signed out, then Home signed in → Install</td></tr>
+          <tr><td class="high">HIGH</td><td>iOS overlay in Safari</td><td>You</td><td>New account → finish onboarding → use app ~1 min on Home/Story/Learn → Add to Home Screen</td></tr>
+          <tr><td class="high">HIGH</td><td>Real inbox for every email type</td><td>You</td><td>Personal mailbox. Or POST /api/public/email-test with Bearer READINGS_CRON_SECRET</td></tr>
+          <tr><td class="medium">MEDIUM</td><td>Submit sitemap in Search Console</td><td>You</td><td>Add https://app.soythe.one/sitemap.xml after production deploy</td></tr>
+          <tr><td class="medium">MEDIUM</td><td>Confirm SPF / DKIM / DMARC</td><td>You</td><td>Lovable email dashboard for notify.app.soythe.one</td></tr>
+          <tr><td class="low">LOW</td><td>Swap Stripe test keys → live keys</td><td>You later</td><td>Test mode already works. Host env only: live publishable, secret, webhook secret. Same lookup keys. Webhook <code>?env=live</code>. Never commit keys.</td></tr>
+          <tr><td class="low">LOW</td><td>Optional PNG Open Graph 1200×630</td><td>Nice to have</td><td>Some apps prefer PNG over SVG for link previews</td></tr>
+          <tr><td class="low">LOW</td><td>Optional French in language menu</td><td>Nice to have</td><td>fr.ts exists but is not in LANGUAGES</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 3 — Security Fixes Detail</h2>
+      <table>
+        <thead>
+          <tr><th>Issue</th><th>Risk</th><th>Fix Applied</th><th>Live in code?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unauthenticated test email blast</td><td>Spam / cost / impersonation</td><td>Secret required on sendTestEmails + /api/public/email-test</td><td><span class="badge badge-done">Active</span></td></tr>
+          <tr><td>Verify poll scanned Auth users</td><td>Email enumeration + load</td><td>Removed listUsers scan; session poll only</td><td><span class="badge badge-done">Active</span></td></tr>
+          <tr><td>Client-chosen Stripe live env</td><td>Live charges from test UI</td><td>Server ignores client environment flag</td><td><span class="badge badge-done">Active</span></td></tr>
+          <tr><td>Webhook invalid env returned 200</td><td>Premium never syncs</td><td>HTTP 400 so Stripe retries</td><td><span class="badge badge-done">Active</span></td></tr>
+          <tr><td>Missing security headers</td><td>Clickjacking / sniffing</td><td>nosniff, referrer, permissions, COOP</td><td><span class="badge badge-done">Active</span></td></tr>
+          <tr><td>Checkout return URL spoof</td><td>Open redirect</td><td>Origin from APP_URL / request, not client</td><td><span class="badge badge-done">Active</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 4 — New Production Assets</h2>
+      <table>
+        <thead>
+          <tr><th>Asset</th><th>URL</th><th>What It Does</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sitemap</td><td>/sitemap.xml</td><td>Public pages for Google</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>Robots</td><td>/robots.txt</td><td>Allow marketing; block /home /api /auth etc.</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>Share image</td><td>/og-image.svg</td><td>Open Graph + Twitter</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>Service worker</td><td>/sw.js</td><td>Makes install eligible</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>Manifest</td><td>/site.webmanifest</td><td>PWA name, icons, standalone</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>LLMs</td><td>/llms.txt</td><td>Short site summary for AI crawlers</td><td><span class="badge badge-done">Live in code</span></td></tr>
+          <tr><td>Security contact</td><td>/.well-known/security.txt</td><td>admin@soythe.one</td><td><span class="badge badge-done">Live in code</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 5 — Real Inbox Email Checklist</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Email</th><th>How to trigger</th><th>What to check</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Confirm signup</td><td>Register a new account</td><td>Arrives; Confirm opens /verify</td></tr>
+          <tr><td>2</td><td>Password reset</td><td>Auth → forgot password</td><td>Link opens /reset and saves a new password</td></tr>
+          <tr><td>3</td><td>Welcome</td><td>After email confirmed</td><td>One email; name/language if set</td></tr>
+          <tr><td>4</td><td>Readings ready</td><td>Birth details done + ~24h / cron</td><td>Sun/Moon/Ascendant not empty</td></tr>
+          <tr><td>5</td><td>Premium confirmed</td><td>Test-mode checkout complete</td><td>App email, not only Stripe receipt</td></tr>
+          <tr><td>6</td><td>Premium canceled</td><td>Cancel in Stripe Customer Portal</td><td>Cancellation notice</td></tr>
+          <tr><td>7</td><td>Account deleted</td><td>Profile → delete account</td><td>Sent before the user is wiped</td></tr>
+        </tbody>
+      </table>
+      <p class="hint" style="margin:14px 0 0;">From: Story of You &lt;noreply@notify.app.soythe.one&gt;. Check Inbox and Spam. Bulk test: <code>POST https://app.soythe.one/api/public/email-test</code> with <code>Authorization: Bearer &lt;READINGS_CRON_SECRET&gt;</code> and body <code>{"to":"you@mail.com","name":"Name"}</code>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Table 6 — What To Add Now vs Leave</h2>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Action</th><th>When</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Code changes for this pass + follow-up UI</td><td><span class="badge badge-done">Done</span></td><td>On GitHub main (incl. language menu, orb, profile initials)</td></tr>
+          <tr><td>Stripe test-mode billing</td><td><span class="badge badge-done">Working</span></td><td>Verified. No further Stripe code work</td></tr>
+          <tr><td>Live Stripe keys (env only)</td><td><span class="badge badge-pending">Add later</span></td><td>Replace test keys with live keys in host env. Same lookup keys. Webhook ?env=live</td></tr>
+          <tr><td>Google Search Console sitemap</td><td><span class="badge badge-pending">Add now</span></td><td>After production deploy</td></tr>
+          <tr><td>Strict Content-Security-Policy</td><td><span class="badge badge-info">Leave</span></td><td>Stripe, Calendly, fonts would break a tight CSP</td></tr>
+          <tr><td>Offline PWA cache</td><td><span class="badge badge-info">Leave</span></td><td>Risk of stale pages after deploy</td></tr>
+          <tr><td>/dashboard redirect</td><td><span class="badge badge-info">Leave</span></td><td>Optional later → /story</td></tr>
+          <tr><td>French language</td><td><span class="badge badge-info">Leave</span></td><td>Only if you want FR in the menu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 7 — Go-Live Order (Do This Sequence)</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Step</th><th>Who</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Deploy this branch to production</td><td>You</td><td>Do not force-push or rewrite Lovable git history</td></tr>
+          <tr><td>2</td><td>Confirm HTTPS + sitemap/robots/icons 200</td><td>You</td><td>https://app.soythe.one</td></tr>
+          <tr><td>3</td><td>Android + iOS install</td><td>You</td><td>Table 2 HIGH items</td></tr>
+          <tr><td>4</td><td>Real inbox emails</td><td>You</td><td>Table 5</td></tr>
+          <tr><td>5</td><td>Sandbox checkout + webhook</td><td>Done</td><td>Test mode verified working. Webhook URL includes <code>?env=sandbox</code></td></tr>
+          <tr><td>6</td><td>Live Stripe (when ready)</td><td>You later</td><td>Change keys only: live secret + publishable + webhook secret, <code>?env=live</code>, one live charge then refund</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 8 — Do Not Do</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Do not</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Put live Stripe keys in the repo or this HTML</td><td>Secret leak</td></tr>
+          <tr><td>2</td><td>Force-push / rebase commits already on Lovable</td><td>Client loses project history</td></tr>
+          <tr><td>3</td><td>Register Stripe webhook without ?env=sandbox or ?env=live</td><td>Events 400; Premium will not update</td></tr>
+          <tr><td>4</td><td>Test PWA only on localhost or Instagram in-app browser</td><td>Install prompt will not fire</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 9 — Stripe: Test Mode vs Live Keys</h2>
+      <p class="hint">Stripe is working perfectly in test mode. The only remaining billing task is changing the keys in the host environment when you are ready to take real payments. Do not put live keys in GitHub.</p>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Status</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Embedded checkout (sandbox)</td><td><span class="badge badge-done">Working</span></td><td>Plans → Checkout → return page. Test-mode banner shows</td></tr>
+          <tr><td>Customer portal</td><td><span class="badge badge-done">Working</span></td><td>Manage / cancel from Profile</td></tr>
+          <tr><td>Premium unlock after pay</td><td><span class="badge badge-done">Working</span></td><td>Webhook with <code>?env=sandbox</code></td></tr>
+          <tr><td>Price lookup keys</td><td><span class="badge badge-done">Ready</span></td><td><code>premium_monthly_*</code> / <code>premium_annual_*</code> for eur, gbp, usd — reuse for live</td></tr>
+          <tr><td>Test card</td><td><span class="badge badge-info">Sandbox</span></td><td><code>4242 4242 4242 4242</code> · any future date · any CVC · any ZIP</td></tr>
+          <tr><td>Live publishable key</td><td><span class="badge badge-pending">Swap later</span></td><td>Host env <code>VITE_STRIPE_PUBLISHABLE_KEY</code> (pk_live_…)</td></tr>
+          <tr><td>Live secret key</td><td><span class="badge badge-pending">Swap later</span></td><td>Host env Stripe secret (sk_live_…). Never in the repo</td></tr>
+          <tr><td>Live webhook secret</td><td><span class="badge badge-pending">Swap later</span></td><td>New endpoint with <code>?env=live</code> + matching signing secret</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Table 10 — Follow-up UI (after production pass)</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Change</th><th>GitHub</th><th>What the user sees</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Language menu no longer jumps the header</td><td><code>1937973</code></td><td>Open EN/ES/IT — header stays put</td></tr>
+          <tr><td>2</td><td>Audio orb play/pause placement</td><td><code>1937973</code></td><td>Control sits on the Home orb correctly</td></tr>
+          <tr><td>3</td><td>Profile FAB initials</td><td><code>44d02d9</code></td><td>No name = user icon. First + last letters, e.g. Mohit Hundlani → MH</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
